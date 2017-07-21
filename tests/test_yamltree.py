@@ -1,5 +1,45 @@
 # -*- coding: utf-8 -*-
 
+def test_yamltree_class(tmpdir):
+    # at this point py.path.local should already be monkey-patched by conftest
+    assert hasattr(tmpdir, 'yaml_check')
+
+    # for now this is an empty directory - this check should pass
+    assert tmpdir.yaml_check('{}')
+
+    # let's create some data
+    struct = r'''
+        Keys:
+            f1: help
+            f2: open editor
+            f7: Remove!
+        data.txt: this is just a file
+        empty: ''
+        emptydir: {}
+        nested:
+            subnested:
+                hello: world
+    '''
+    tmpdir.yaml_create(struct)
+
+    # check individual parts
+    assert tmpdir.join('data.txt').yaml_check('this is just a file')
+    # and check that yaml really works
+    assert tmpdir.join('data.txt').yaml_check('"this is just a file"')
+    # also for empty dirs
+    assert tmpdir.join('emptydir').yaml_check('{}')
+
+    # check something "traditionally"
+    assert tmpdir.join('Keys', 'f7').read() == 'Remove!'
+    assert tmpdir.join('data.txt').read() == 'this is just a file'
+    assert tmpdir.join('empty').read() == ''
+    assert tmpdir.join('emptydir').isdir()
+    assert tmpdir.join('emptydir').listdir() == []
+    assert tmpdir.join('nested', 'subnested', 'hello').read() == 'world'
+
+    # and finally check that it is accepted by yaml_check as well
+    assert tmpdir.yaml_check(struct)
+
 
 def test_bar_fixture(testdir):
     """Make sure that pytest accepts our fixture."""
