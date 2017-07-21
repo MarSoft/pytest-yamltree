@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+"""
+Basic usage: we monkey-patch py.path.local object
+to add yaml_create and yaml_check methods to it.
+As a result, these methods are available on e.g. `tmpdir` fixture's object.
+"""
 
 import warnings
 
