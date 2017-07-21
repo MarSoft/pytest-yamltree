@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import pytest
+
 def test_yamltree_class(tmpdir):
     # at this point py.path.local should already be monkey-patched by conftest
     assert hasattr(tmpdir, 'yaml_check')
@@ -39,6 +41,28 @@ def test_yamltree_class(tmpdir):
 
     # and finally check that it is accepted by yaml_check as well
     assert tmpdir.yaml_check(struct)
+
+    # now we want to make sure that check doesn't allow extra files...
+    tmpdir.join('something.txt').write('huh')
+    with pytest.raises(AssertionError):
+        tmpdir.yaml_check(struct)
+
+    # ...that file contents are checked...
+    tmpdir.join('something.txt').remove()
+    tmpdir.join('data.txt').write('another data!!11')
+    with pytest.raises(AssertionError):
+        tmpdir.yaml_check(struct)
+
+    # ...that missing files are not allowed...
+    tmpdir.join('data.txt').remove()
+    with pytest.raises(AssertionError):
+        tmpdir.yaml_check(struct)
+
+    # ...and that file is differentiated from directory.
+    with pytest.raises(AssertionError):
+        tmpdir.yaml_check('I thought it is a file')
+    with pytest.raises(AssertionError):
+        tmpdir.yaml_check('nested: I thought it is a file')
 
 
 def test_bar_fixture(testdir):
