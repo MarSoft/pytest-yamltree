@@ -51,7 +51,8 @@ class YamlTree(object):
 
     def check(self):
         def ondir(d, data):
-            # for dirs, check that content names match - no extra and no missing
+            # for dirs, check that content names match -
+            # no extra and no missing
             assert d.exists()
             assert d.isdir()
             assert set(l.basename for l in d.listdir()) == set(data.keys())
