@@ -23,7 +23,7 @@ setup(
     description='Create or check file/directory trees described by YAML',
     long_description=read('README.rst'),
     py_modules=['pytest_yamltree'],
-    install_requires=['pytest>=3.1.1'],
+    install_requires=['pytest>=3.1.1', 'pyyaml'],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Framework :: Pytest',
