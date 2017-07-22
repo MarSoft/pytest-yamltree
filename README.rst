@@ -20,13 +20,41 @@ This `Pytest`_ plugin was generated with `Cookiecutter`_ along with `@hackebrot`
 Features
 --------
 
-* TODO
+* Monkey-patches `py.path.local`_ class (the one behing `tmpdir`_ fixture) to append `yaml_create`_ and `yaml_check`_ methods for easy access.
+* Use it like this::
+
+    def test_foo(tmpdir):
+        tmpdir.yaml_create("""
+            directory_one:
+                file1: Hello World
+                file2: "Including\nLine\nBreaks\n"
+                subdir:
+                    file3: |
+                        Some raw content here.
+                        It is probably better readable.
+            directory_two:
+                arrow.gif: !!binary |
+                    R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5
+                    OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/+
+                    +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC
+                    AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=
+        """)
+
+        # now these files are created under tmpdir
+        assert tmpdir.join('directory_one', 'file1').read() == 'Hello World'
+
+        # also can check that directory structure corresponds to the declaration
+        tmpdir.yaml_check("""
+            directory_one:
+                file1: Content
+            directory_two: {}  # empty mapping means empty directory
+        """)
 
 
 Requirements
 ------------
 
-* TODO
+* PyYAML
 
 
 Installation
