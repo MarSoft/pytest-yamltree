@@ -15,6 +15,7 @@ def test_yamltree_usage(testdir):
 
     assert result.ret == 0
 
+
 def test_yamltree_class(tmpdir):
     from pytest_yamltree import YamlTree
 
