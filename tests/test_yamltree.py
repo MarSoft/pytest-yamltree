@@ -2,6 +2,19 @@
 
 import pytest
 
+
+def test_yamltree_usage(testdir):
+    testdir.makepyfile("""
+        def test(tmpdir):
+            # assert that monkey-patching succeeded
+            assert hasattr(tmpdir, 'yaml_create')
+            assert hasattr(tmpdir, 'yaml_check')
+    """)
+
+    result = testdir.runpytest()
+
+    assert result.ret == 0
+
 def test_yamltree_class(tmpdir):
     from pytest_yamltree import YamlTree
 
