@@ -8,6 +8,7 @@ As a result, these methods are available on e.g. `tmpdir` fixture's object.
 import warnings
 
 import py
+import pytest
 import yaml
 
 
@@ -73,6 +74,12 @@ class YamlTree(object):
     @classmethod
     def check_from(cls, root, data):
         return cls(root, data).check()
+
+
+# just for easier access
+@pytest.fixture
+def yamltree():
+    return YamlTree
 
 
 def pytest_configure(config):
