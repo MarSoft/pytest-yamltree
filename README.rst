@@ -20,7 +20,7 @@ This `Pytest`_ plugin was generated with `Cookiecutter`_ along with `@hackebrot`
 Features
 --------
 
-* Monkey-patches `py.path.local`_ class (the one behind `tmpdir`_ fixture) to append `yaml_create`_ and `yaml_check`_ methods for easy access.
+* Monkey-patches `py.path.local`_ class (the one behind `tmpdir`_ fixture) to append `yaml_create` and `yaml_check` methods for easy access.
 * Use it like this::
 
     def test_foo(tmpdir):
@@ -98,3 +98,5 @@ If you encounter any problems, please `file an issue`_ along with a detailed des
 .. _`tox`: https://tox.readthedocs.io/en/latest/
 .. _`pip`: https://pypi.python.org/pypi/pip/
 .. _`PyPI`: https://pypi.python.org/pypi
+.. _`py.path.local`: http://py.readthedocs.io/en/latest/path.html
+.. _`tmpdir`: https://docs.pytest.org/en/latest/tmpdir.html
