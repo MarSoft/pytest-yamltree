@@ -20,7 +20,7 @@ This `Pytest`_ plugin was generated with `Cookiecutter`_ along with `@hackebrot`
 Features
 --------
 
-* Monkey-patches `py.path.local`_ class (the one behing `tmpdir`_ fixture) to append `yaml_create`_ and `yaml_check`_ methods for easy access.
+* Monkey-patches `py.path.local`_ class (the one behind `tmpdir`_ fixture) to append `yaml_create`_ and `yaml_check`_ methods for easy access.
 * Use it like this::
 
     def test_foo(tmpdir):
