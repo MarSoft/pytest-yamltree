@@ -13,7 +13,7 @@ def read(fname):
 
 setup(
     name='pytest-yamltree',
-    version='0.1.0',
+    version='0.1.1',
     author='Semyon Maryasin',
     author_email='simeon@maryasin.name',
     maintainer='Semyon Maryasin',
