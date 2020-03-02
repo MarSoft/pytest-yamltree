@@ -28,7 +28,7 @@ class YamlTree(object):
     """
     def __init__(self, root, descr):
         self.root = py.path.local(root)
-        self.data = yaml.load(descr)
+        self.data = yaml.safe_load(descr)
 
     def _walk(self, ondir, onleaf, root=DEFAULT, data=DEFAULT):
         if root is DEFAULT:
