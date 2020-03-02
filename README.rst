@@ -6,10 +6,6 @@ pytest-yamltree
     :target: https://travis-ci.org/MarSoft/pytest-yamltree
     :alt: See Build Status on Travis CI
 
-.. image:: https://ci.appveyor.com/api/projects/status/github/MarSoft/pytest-yamltree?branch=master
-    :target: https://ci.appveyor.com/project/MarSoft/pytest-yamltree/branch/master
-    :alt: See Build Status on AppVeyor
-
 Create or check file/directory trees described by YAML
 
 ----
