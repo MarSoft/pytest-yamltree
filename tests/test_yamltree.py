@@ -3,6 +3,8 @@
 import pytest
 
 
+# FIXME: filterwarnings does not work for py38, why?
+@pytest.mark.filterwarnings('ignore:Looks like yaml_create')
 def test_yamltree_usage(testdir):
     testdir.makepyfile("""
         def test(tmpdir):
